@@ -38,7 +38,47 @@ const Veggies = require('./routes/Veggies.js');
 //   console.log('connected to mongoDB')
 // });
 
+/*** Mock Data for Testing ***/
+const fruits = ["apple", "banana", "pear"]
 
+// Routes
+app.get('/', (req, res) => {
+  res.send('Welcome to the Fruits API!')
+})
+
+// seed route
+app.get('/fruits/seed', async (req, res) => {
+  try {
+    await Fruit.create([
+      {
+        name: 'grapefruit',
+        color: 'pink',
+        readyToEat: true
+      },
+      {
+        name: 'grape',
+        color: 'purple',
+        readyToEat: false
+      },
+      {
+        name: 'avocado',
+        color: 'green',
+        readyToEat: true
+      }
+    ])
+    res.redirect('/fruits')
+  } catch (error) {
+    console.error(error)
+  }
+})
+// From our Fruit Routes
+app.use('/fruits', Fruits)
+
+
+// Global error handling
+app.use((err, _req, res, next) => {
+  res.status(500).send("Seems like we messed up somewhere...");
+});
 
 
 app.listen(PORT, () => {
