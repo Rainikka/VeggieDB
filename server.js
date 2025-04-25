@@ -51,7 +51,7 @@ app.get('/', (req, res) => {
     Go ahead and introduce yourself to a veggie today`)
 })
 
-// seed route
+/*** Index: Get ***/
 app.get('/veggies/seed', async (req, res) => {
   try {
     await Veggie.create([
