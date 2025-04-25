@@ -44,7 +44,6 @@ const Veggies = require('./routes/Veggies.js');
 /*** Establish Endpoint Routes ***/
 
 /************** INDUCES **************/
-
 /*** Index: Get ***/
 app.get('/', (req, res) => {
   res.send(`Welcome to the Veggie API!
