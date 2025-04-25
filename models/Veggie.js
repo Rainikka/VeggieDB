@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
 
-const fruitSchema = new mongoose.Schema({
+const veggieSchema = new mongoose.Schema({
   name: String,
   color: String,
   readyToEat: Boolean
 });
 
-module.exports = mongoose.model('Fruit', fruitSchema);
+module.exports = mongoose.model('Veggiee', veggieeSchema);

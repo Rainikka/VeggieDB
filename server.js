@@ -38,8 +38,7 @@ const Veggies = require('./routes/Veggies.js');
 //   console.log('connected to mongoDB')
 // });
 
-/*** Mock Data for Testing ***/
-// const Veggies = ["broccoli", "cabbage", "kale"]
+
 /*** Mock Data for Testing ***/
 // const Veggies = ["broccoli", "cabbage", "kale"]
 
@@ -87,7 +86,7 @@ app.use((err, _req, res, next) => {
   res.status(500).send("Seems like we messed up somewhere...");
 });
 
-/** Sever Listening ***/
+/** Server Listening ***/
 app.listen(PORT, () => {
   console.log(`Server is listening on Port: André${PORT}`)
 });

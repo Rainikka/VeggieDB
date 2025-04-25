@@ -1,26 +1,68 @@
 const express = require('express');
 const router = express.Router();
-const Fruit = require('../models/Veggie');
+const veggie = require('../models/veggie');
 
-// Index Route
+// Index - GET all veggies
 router.get('/', async (req, res) => {
   try {
-    const fruits = await Fruit.find({});
-    res.json(fruits);
+    const veggies = await veggie.find();
+    res.json(veggies);
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    console.log(err);
   }
 });
 
-// Create Route
-router.post('/', async (req, res) => {
-  req.body.readyToEat = req.body.readyToEat === 'on';
+// New - handled by front end
 
+// Delete - DELETE one veggie
+router.delete('/:id', async (req, res) => {
   try {
-    const newFruit = await Fruit.create(req.body);
-    res.redirect('/fruits');
+    await veggie.findByIdAndDelete(req.params.id);
+    res.redirect('/veggiess');
+  } catch (error) {
+    console.error(error);
+  }
+});
+
+// Update - PUT update veggie
+router.put("/:id", async (req, res) => {
+  try {
+    if (req.body.readyToEat === "on") {
+      req.body.readyToEat = true;
+    } else {
+      req.body.readyToEat = false;
+    }
+    await veggie.findByIdAndUpdate(req.params.id, req.body);
+    res.redirect("/veggies");
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+// Create - POST new veggie
+router.post('/', async (req, res) => {
+  try {
+    if (req.body.readyToEat === "on") {
+      req.body.readyToEat = true;
+    } else {
+      req.body.readyToEat = false;
+    }
+    await veggie.create(req.body);
+    res.redirect("/veggies");
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+// Edit - handled by front end
+
+// Show - GET one veggie
+router.get('/:id', async (req, res) => {
+  try {
+    const veggie = await veggie.findById(req.params.id);
+    res.json(veggie);
   } catch (err) {
-    res.status(400).json({ error: err.message });
+    console.log(err);
   }
 });
 

@@ -1,7 +1,1 @@
-POST http://localhost:3000/fruits
-
-{
-  "name": "apple",
-  "color": "red",
-  "readyToEat": "on"
-}
+GET http://localhost:3000/veggies
