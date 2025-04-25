@@ -36,7 +36,7 @@ const Veggies = require('./routes/Veggies.js');
 // mongoose.connect(process.env.ATLAS_URI)
 // mongoose.connection.once('open', () => {
 //   console.log('connected to mongoDB')
-// })
+// });
 
 
 
