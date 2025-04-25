@@ -76,7 +76,7 @@ app.get('/veggies/seed', async (req, res) => {
     console.error(error)
   }
 })
-// From our Fruit Routes
+
 app.use('/veggies', Veggies)
 
 
