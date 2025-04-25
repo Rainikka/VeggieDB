@@ -50,33 +50,34 @@ app.get('/', (req, res) => {
     Go ahead and introduce yourself to a veggie today`)
 })
 
-/*** Index: Get ***/
+/***  Seed Data ***/
 app.get('/veggies/seed', async (req, res) => {
   try {
     await Veggie.create([
       {
-        name: 'grapefruit',
-        color: 'pink',
+        name: 'corn',
+        color: 'yellow',
         readyToEat: true
       },
       {
-        name: 'grape',
-        color: 'purple',
+        name: 'eggplant',
+        color: 'spotted',
         readyToEat: false
       },
       {
-        name: 'avocado',
-        color: 'green',
+        name: 'carrots',
+        color: 'orange',
         readyToEat: true
       }
     ])
-    res.redirect('/fruits')
+    /*** Redirection ***/
+    res.redirect('/veggies')
   } catch (error) {
     console.error(error)
   }
 })
 // From our Fruit Routes
-app.use('/fruits', Fruits)
+app.use('/veggies', Veggies)
 
 
 // Global error handling
