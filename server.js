@@ -18,13 +18,13 @@ dotenv.config();
 /*** Require: Express Server ***/
 const express = require("express");
 const app = express();
-const port = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3000;
 
 /*** Require: Middleware ***/
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-/*** Require: MongoDB & Mongoose Datatases ***/
+/*** Require: MongoDB & Mongoose Databases ***/
 const mongoDB = require("mongodb");
 const mongoose = require("mongoose");
 
@@ -40,17 +40,18 @@ const Veggies = require('./routes/Veggies.js');
 
 /*** Mock Data for Testing ***/
 // const Veggies = ["broccoli", "cabbage", "kale"]
+/*** Mock Data for Testing ***/
+// const Veggies = ["broccoli", "cabbage", "kale"]
 
-/*** Establish Endpoint Routes ***/
-
-/************** INDUCES **************/
+/***** Establish Endpoint Routes ******/
+/*************** INDUCES **************/
 /*** Index: Get ***/
 app.get('/', (req, res) => {
   res.send(`Welcome to the Veggie API!
     Go ahead and introduce yourself to a veggie today`)
 })
 
-/***  Seed Data ***/
+/***  Seed Data  Function ***/
 app.get('/veggies/seed', async (req, res) => {
   try {
     await Veggie.create([
@@ -74,18 +75,19 @@ app.get('/veggies/seed', async (req, res) => {
     res.redirect('/veggies')
   } catch (error) {
     console.error(error)
+    res.status(500).send("Error seeding data")
   }
 })
 
 app.use('/veggies', Veggies)
 
 
-// Global error handling
+/*** Error Handling ***/
 app.use((err, _req, res, next) => {
   res.status(500).send("Seems like we messed up somewhere...");
 });
 
-
+/** Sever Listening ***/
 app.listen(PORT, () => {
   console.log(`Server is listening on Port: André${PORT}`)
 });
