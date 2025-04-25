@@ -39,17 +39,22 @@ const Veggies = require('./routes/Veggies.js');
 // });
 
 /*** Mock Data for Testing ***/
-const fruits = ["apple", "banana", "pear"]
+// const Veggies = ["broccoli", "cabbage", "kale"]
 
-// Routes
+/*** Establish Endpoint Routes ***/
+
+/************** INDUCES **************/
+
+/*** Index: Get ***/
 app.get('/', (req, res) => {
-  res.send('Welcome to the Fruits API!')
+  res.send(`Welcome to the Veggie API!
+    Go ahead and introduce yourself to a veggie today`)
 })
 
 // seed route
-app.get('/fruits/seed', async (req, res) => {
+app.get('/veggies/seed', async (req, res) => {
   try {
-    await Fruit.create([
+    await Veggie.create([
       {
         name: 'grapefruit',
         color: 'pink',
